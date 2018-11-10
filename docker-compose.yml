@@ -70,7 +70,7 @@ services:
       - db
       - redis
 
-  sidekiq:
+  sidekiq: &SIDEKIQ
     build: .
     image: tootsuite/mastodon
     restart: always
@@ -84,6 +84,12 @@ services:
       - internal_network
     volumes:
       - ./public/system:/mastodon/public/system
+
+
+#  sidekiq_2:
+#    <<: *SIDEKIQ
+
+
 ## Uncomment to enable federation with tor instances along with adding the following ENV variables
 ## http_proxy=http://privoxy:8118
 ## ALLOW_ACCESS_TO_HIDDEN_SERVICE=true
