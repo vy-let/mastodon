@@ -10,6 +10,12 @@ services:
       test: ["CMD", "pg_isready", "-U", "postgres"]
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
+    logging:
+      driver: json-file
+      options:
+        max-size: "1k"
+        max-file: "10"
+        mode: non-blocking
 
   redis:
     restart: always
@@ -20,6 +26,12 @@ services:
       test: ["CMD", "redis-cli", "ping"]
     volumes:
       - ./data/redis:/data
+    logging:
+      driver: json-file
+      options:
+        max-size: "1k"
+        max-file: "10"
+        mode: non-blocking
 
 #  es:
 #    restart: always
@@ -52,6 +64,12 @@ services:
 #      - es
     volumes:
       - ./public/system:/mastodon/public/system
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "50"
+        mode: non-blocking
 
   streaming:
     build: .
@@ -69,6 +87,12 @@ services:
     depends_on:
       - db
       - redis
+    logging:
+      driver: json-file
+      options:
+        max-size: "1k"
+        max-file: "10"
+        mode: non-blocking
 
   sidekiq: &SIDEKIQ
     build: .
@@ -84,6 +108,12 @@ services:
       - internal_network
     volumes:
       - ./public/system:/mastodon/public/system
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "50"
+        mode: non-blocking
 
 
 #  sidekiq_2:
