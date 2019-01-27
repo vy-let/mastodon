@@ -3,7 +3,7 @@
 :queues:
   - [default, 256]
   - [push, 32]
-  - [pull, 64]
+  - [pull, 256]
   - [mailers, 8]
   - [maintenance, 1]
 
