@@ -63,7 +63,7 @@ services:
       - redis
 #      - es
     volumes:
-      - ./public/system:/mastodon/public/system
+      - /mnt/mastodon-storage/mastodon/public/system:/mastodon/public/system
     logging:
       driver: json-file
       options:
@@ -107,7 +107,7 @@ services:
       - external_network
       - internal_network
     volumes:
-      - ./public/system:/mastodon/public/system
+      - /mnt/mastodon-storage/mastodon/public/system:/mastodon/public/system
     logging:
       driver: json-file
       options:
