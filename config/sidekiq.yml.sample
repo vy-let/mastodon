@@ -1,10 +1,10 @@
 ---
 :concurrency: 10
 :queues:
-  - [default, 256]
-  - [push, 32]
-  - [pull, 256]
-  - [mailers, 8]
+  - [default, 4]
+  - [push, 3]
+  - [pull, 2]
+  - [mailers, 1]
   - [maintenance, 1]
 
 :schedule:
