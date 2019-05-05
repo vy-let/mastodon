@@ -1,11 +1,11 @@
 ---
-:concurrency: 10
+:concurrency: 30
 :queues:
-  - [default, 4]
-  - [push, 3]
-  - [pull, 2]
-  - [mailers, 1]
-  - [maintenance, 1]
+  - [default, 5]
+  - [push, 1]
+  - [pull, 4]
+  - maintenance
+  - mailers
 
 :schedule:
   scheduled_statuses_scheduler:
