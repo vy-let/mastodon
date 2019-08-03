@@ -67,8 +67,8 @@ services:
     logging:
       driver: json-file
       options:
-        max-size: "1m"
-        max-file: "50"
+        max-size: "100k"
+        max-file: "200"
         mode: non-blocking
 
   streaming:
