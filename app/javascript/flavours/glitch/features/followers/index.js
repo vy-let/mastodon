@@ -33,11 +33,14 @@ class Followers extends ImmutablePureComponent {
     accountIds: ImmutablePropTypes.list,
     hasMore: PropTypes.bool,
     isAccount: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   componentWillMount () {
-    this.props.dispatch(fetchAccount(this.props.params.accountId));
-    this.props.dispatch(fetchFollowers(this.props.params.accountId));
+    if (!this.props.accountIds) {
+      this.props.dispatch(fetchAccount(this.props.params.accountId));
+      this.props.dispatch(fetchFollowers(this.props.params.accountId));
+    }
   }
 
   componentWillReceiveProps (nextProps) {
@@ -68,7 +71,7 @@ class Followers extends ImmutablePureComponent {
   }
 
   render () {
-    const { accountIds, hasMore, isAccount } = this.props;
+    const { accountIds, hasMore, isAccount, multiColumn } = this.props;
 
     if (!isAccount) {
       return (
@@ -90,7 +93,7 @@ class Followers extends ImmutablePureComponent {
 
     return (
       <Column ref={this.setRef}>
-        <ProfileColumnHeader onClick={this.handleHeaderClick} />
+        <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
 
         <ScrollableList
           scrollKey='followers'
@@ -99,6 +102,7 @@ class Followers extends ImmutablePureComponent {
           prepend={<HeaderContainer accountId={this.props.params.accountId} hideTabs />}
           alwaysPrepend
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         >
           {accountIds.map(id =>
             <AccountContainer key={id} id={id} withNote={false} />

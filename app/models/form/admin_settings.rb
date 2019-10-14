@@ -36,8 +36,10 @@ class Form::AdminSettings
     show_replies_in_public_timelines
     spam_check_enabled
     trends
+    trendable_by_default
     show_domain_blocks
     show_domain_blocks_rationale
+    noindex
   ).freeze
 
   BOOLEAN_KEYS = %i(
@@ -55,6 +57,8 @@ class Form::AdminSettings
     show_replies_in_public_timelines
     spam_check_enabled
     trends
+    trendable_by_default
+    noindex
   ).freeze
 
   UPLOAD_KEYS = %i(
